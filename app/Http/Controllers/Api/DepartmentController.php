@@ -24,4 +24,29 @@ class DepartmentController extends Controller
             'data' => '']);
         }
    }
+
+   public function store(Request $request)
+   {
+    $department = Department::firstOrCreate(
+        [
+            'DepartmentName'=>$request->departmentname,
+            'created_by' => $request->created_by
+        ]);
+        if($department->wasRecentlyCreated)
+        {
+            return response()->json([
+            'status' => 200,
+            'message' => 'Department created successfully',
+            'data' => $department]);
+        }
+        else
+        {
+            return response()->json([
+            'status' => 404,
+            'message' => 'Department already exists',
+            'data' => '']);
+        }
+    }   
+
+
 }

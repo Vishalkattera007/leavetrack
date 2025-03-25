@@ -6,5 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 // Public Route (No authentication required)
 Route::get('/superadmin', [SuperadminController::class, 'index']); 
+Route::post('/login', [SuperadminController::class, 'login']); 
+
 
 // Protected Routes (Require authentication)
